@@ -1,0 +1,70 @@
+Git and GitHub:
+
+Git: Version Control System --by Unix--installed in local system.
+accepts same as Unix shell commands:
+
+install the git
+create the repository for the first time using below command(same as creating dorectory in Unix), it will create master branch automatically.
+mkdir Rep_Name--when you create this, one hidden file(.git) will be created.
+
+after creating above, now we need to initialize the git repository using below command
+git init --when you trigger this, one hidden file(.git) will be created.
+
+Now, if you check the status with command git status, you will see untracked files.
+to files to be tracked, use add command.
+
+git add filename
+if you check the status now, you will not see untracked files message. instead you will see no commits yet.
+-----------------------------------------------------------------------------------------------------------------
+to commit, below is the command:
+git commit -m "filename"
+result:
+[master (root-commit) e0d62a6] alpha
+ Committer: RajuNaik GitHub <Azmeera.Raju@gds.ey.com>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 alpha.txt
+---------------------------------------------------------------------------------------------------------------------
+if you want to change you user name or email use above commands.
+
+Next check all the information that were made:
+
+git log
+$ git log
+commit e0d62a65a12f9eede3f140446151b9d73464d149 (HEAD -> master)
+Author: RajuNaik GitHub <Azmeera.Raju@gds.ey.com>
+Date:   Wed Jul 13 22:31:17 2022 +0530
+
+    alpha
+-------------------------------------------------------------------------
+perform above same steps for another file beta.txt
+
+touch beta.txt
+add some text in it and save
+git add beta.txt
+git commit -m "beta"
+git status
+git log
+---------------------------------------------------------------------
+We are done with creating,writing,commiting with two files.
+
+Lets login to github and create new repository in github.
+take repository path with full url like - https://github.com/RajuNaik/FirstRepo.git
+
+And, fire below commands
+$git remote add origin https://github.com/RajuNaik/FirstRepo.git			--it will add remot url
+$git remote -v
+origin  https://github.com/RajuNaik/FirstRepo.git (fetch)
+origin  https://github.com/RajuNaik/FirstRepo.git (push)
+
+----------------------------------------------------------------------------------
