@@ -19,7 +19,7 @@
 					"value": "@dataset().ds_param_master_file",
 					"type": "Expression"
 				},
-				"fileSystem": "main-container"
+				"fileSystem": "container1"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
