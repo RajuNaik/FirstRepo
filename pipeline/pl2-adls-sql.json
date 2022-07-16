@@ -3,38 +3,11 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Validation1",
-				"type": "Validation",
+				"name": "Copy data1",
+				"type": "Copy",
 				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "ds2_adls_file",
-						"type": "DatasetReference",
-						"parameters": {
-							"ds_param_master_file": {
-								"value": "@pipeline().parameters.pl_param_master_file",
-								"type": "Expression"
-							}
-						}
-					},
-					"timeout": "0.00:01:00",
-					"sleep": 10
-				}
-			},
-			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
-				"dependsOn": [
-					{
-						"activity": "Validation1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
 				"policy": {
-					"timeout": "0.00:01:00",
+					"timeout": "7.00:00:00",
 					"retry": 0,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
@@ -42,36 +15,48 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataset": {
-						"referenceName": "ds2_adls_file",
-						"type": "DatasetReference",
-						"parameters": {
-							"ds_param_master_file": {
-								"value": "@pipeline().parameters.pl_param_master_file",
-								"type": "Expression"
-							}
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": "*.csv",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"fieldList": [
-						"childItems",
-						"columnCount",
-						"size"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"enablePartitionDiscovery": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds2_sql_db",
+						"type": "DatasetReference"
+					}
+				]
 			}
 		],
-		"parameters": {
-			"pl_param_master_file": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
