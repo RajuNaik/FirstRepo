@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"param_master_file": {
+			"ds_param_master_file": {
 				"type": "string"
 			}
 		},
@@ -16,7 +16,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@dataset().param_master_file",
+					"value": "@dataset().ds_param_master_file",
 					"type": "Expression"
 				},
 				"fileSystem": "main-container"

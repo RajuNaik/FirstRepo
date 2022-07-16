@@ -10,13 +10,24 @@
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "ds2_adls_file",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_param_master_file": {
+								"value": "@pipeline().parameters.pl_param_master_file",
+								"type": "Expression"
+							}
+						}
 					},
 					"timeout": "7.00:00:00",
 					"sleep": 10
 				}
 			}
 		],
+		"parameters": {
+			"pl_param_master_file": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
