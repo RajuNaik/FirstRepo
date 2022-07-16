@@ -23,8 +23,8 @@
 				}
 			},
 			{
-				"name": "ForEach1",
-				"type": "ForEach",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [
 					{
 						"activity": "Validation1",
@@ -33,7 +33,34 @@
 						]
 					}
 				],
-				"userProperties": []
+				"policy": {
+					"timeout": "0.00:01:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds2_adls_file",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_param_master_file": {
+								"value": "@pipeline().parameters.pl_param_master_file",
+								"type": "Expression"
+							}
+						}
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
+					},
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
 			}
 		],
 		"parameters": {
