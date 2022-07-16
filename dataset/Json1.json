@@ -1,0 +1,26 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls2_adls",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "master_file.json",
+				"fileSystem": "main-container"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"sourcefile": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
