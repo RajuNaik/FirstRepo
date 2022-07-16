@@ -1,0 +1,16 @@
+{
+	"name": "ds2_sql_db",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls2_sql_db",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": "Customer_bkp"
+		}
+	}
+}
